@@ -2,14 +2,13 @@
 
 ## Admin API token
 
-The token generated in the web ui is not allowed to talk to the admin inteface, and there is no way to create admin api tokens automatically. You can fish out the web browsers token though and use that one,
+The token generated in the web ui is not allowed to talk to the admin inteface, and there is no way to create admin api tokens automatically. You can fish out of the web browser though and use that one, as they are valid for 30 days.
 
 1. Login to the strapi admin panel in the web browser as usual.
 1. Open devtools (ctrl+shift+c).
-1. Open the `Network` tab.
-1. Refresh the page.
-1. Select the any of the rows that appear and find one that has `Request Headers` and a key called `Authorization`. Ex. `Authorization:	Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxMDAwMDAwMDAwLCJleHAiOjEwMDAwMDAwMDF9.lnp5LlOfXWzBBj6sxCoBWF-4fIXjYmR6v59AHufaxbc`
-1. Copy the key, `eyJhb....`, and replace the `api_token` value in the `config.yaml` file.
+1. Open the `Storage` tab.
+1. Select `Session Storage` and your site.
+1. Copy the value for the key `jwtToken`, e.g. `eyJhb....`, and replace the `api_token` value in the `config.yaml` file or give it as `-t` when running the script.
 
 
 ## Usage
@@ -18,7 +17,9 @@ The token generated in the web ui is not allowed to talk to the admin inteface, 
 
 ```bash
 # to add the role "NBIS staff" to all users
-python3 add_role_to_all_users.py config.yaml "NBIS staff"
+python3 add_role_to_all_users.py -c config.yaml -r "NBIS staff"
+
+# see -h for additional option
 ```
 
 
